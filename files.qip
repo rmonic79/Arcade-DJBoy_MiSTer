@@ -1,0 +1,103 @@
+# DJ Boy (Kaneko 1989) — project file list (sourced by the .qsf).
+# Base: fork NightSlashers (jtframe_sdram64 multi-bank).
+# HW: 3x Z80 @6MHz + MCU 8051 "BEAST" + Kaneko PANDORA + YM2203 + 2x OKI M6295.
+
+# —— common infra (memory, savestate, overlays) ——
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/common/ddram_4port.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/common/savestate.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/common/savestate_ram.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/common/savestate_ddr.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/common/memory_stream.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/common/ss_ddr_gate.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/common/savestate_ui.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/common/pause_overlay.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/common/pause_text.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/common/pause_font.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/common/analog_hsize.sv
+set_global_assignment -name VERILOG_FILE rtl/common/hiscore.v
+
+# —— CPU: 3x Z80 (tv80 instrumentato savestate; T80 VHDL disponibile come alternativa) ——
+set_global_assignment -name VERILOG_FILE rtl/tv80/tv80_auto_ss.v
+set_global_assignment -name VHDL_FILE rtl/t80/T80pa.vhd
+set_global_assignment -name VHDL_FILE rtl/t80/T80s.vhd
+set_global_assignment -name VHDL_FILE rtl/t80/T80.vhd
+set_global_assignment -name VHDL_FILE rtl/t80/T80_ALU.vhd
+set_global_assignment -name VHDL_FILE rtl/t80/T80_MCode.vhd
+set_global_assignment -name VHDL_FILE rtl/t80/T80_Reg.vhd
+
+# —— MCU 8051 BEAST (mc8051 Oregano + wrapper jtframe, ordine da mc8051.yaml) ——
+set_global_assignment -name VERILOG_FILE rtl/mc8051/jtframe_8751mcu.v
+set_global_assignment -name VHDL_FILE rtl/mc8051/mc8051_p.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/control_fsm_.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/control_fsm_rtl.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/control_fsm_rtl_cfg.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/control_mem_.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/control_mem_rtl.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/control_mem_rtl_cfg.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/alumux_.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/alumux_rtl.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/alumux_rtl_cfg.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/alucore_.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/alucore_rtl.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/alucore_rtl_cfg.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/addsub_cy_.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/addsub_cy_rtl.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/addsub_cy_rtl_cfg.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/addsub_ovcy_.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/addsub_ovcy_rtl.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/addsub_ovcy_rtl_cfg.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/addsub_core_.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/addsub_core_struc.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/addsub_core_struc_cfg.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/comb_divider_.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/comb_divider_rtl.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/comb_divider_rtl_cfg.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/comb_mltplr_.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/comb_mltplr_rtl.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/comb_mltplr_rtl_cfg.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/dcml_adjust_.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/dcml_adjust_rtl.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/dcml_adjust_rtl_cfg.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/mc8051_siu_.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/mc8051_siu_rtl.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/mc8051_siu_rtl_cfg.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/mc8051_tmrctr_.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/mc8051_tmrctr_rtl.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/mc8051_tmrctr_rtl_cfg.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/mc8051_alu_.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/mc8051_alu_struc.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/mc8051_alu_struc_cfg.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/mc8051_control_.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/mc8051_control_struc.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/mc8051_control_struc_cfg.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/mc8051_core_.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/mc8051_core_struc.vhd
+set_global_assignment -name VHDL_FILE rtl/mc8051/mc8051_core_struc_cfg.vhd
+
+# —— audio cores (YM2203 jt03 + 2x OKI jt6295) ——
+set_global_assignment -name QIP_FILE rtl/jt03/jt03.qip
+set_global_assignment -name QIP_FILE rtl/jt6295/jt6295.qip
+set_global_assignment -name VERILOG_FILE rtl/jtframe/jtframe_mixer.v
+set_global_assignment -name VERILOG_FILE rtl/jtframe/jtframe_pole.v
+set_global_assignment -name VERILOG_FILE rtl/jtframe/jtframe_sndchain.v
+
+# —— DJ Boy game ——
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/djboy/djboy_dpram.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/djboy/djboy_top.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/djboy/djboy_sdram_bridge.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/djboy/djboy_pandora.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/djboy/djboy_bg.sv
+
+# —— SDRAM / PLL / jtframe glue ——
+set_global_assignment -name VERILOG_FILE rtl/jtframe_sdram64.v
+set_global_assignment -name VERILOG_FILE rtl/jtframe_sdram64_bank.v
+set_global_assignment -name VERILOG_FILE rtl/jtframe_sdram64_init.v
+set_global_assignment -name VERILOG_FILE rtl/jtframe_sdram64_latch.v
+set_global_assignment -name VERILOG_FILE rtl/jtframe_sdram64_rfsh.v
+set_global_assignment -name VERILOG_FILE rtl/jtframe/jtframe_frac_cen.v
+set_global_assignment -name VERILOG_FILE rtl/jtframe/jtframe_freqinfo.v
+set_global_assignment -name VERILOG_FILE rtl/jtframe/jtframe_sync.v
+set_global_assignment -name VERILOG_FILE rtl/jtframe/jtframe_ram.v
+set_global_assignment -name VERILOG_FILE rtl/jtframe/jtframe_dual_ram.v
+set_global_assignment -name VERILOG_FILE rtl/pll.v
+set_global_assignment -name QIP_FILE rtl/pll.qip

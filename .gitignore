@@ -1,0 +1,34 @@
+# Quartus build artifacts
+db/
+incremental_db/
+output_files/
+greybox_tmp/
+hc_output/
+simulation/
+.qsys_edit/
+*.qws
+*.rpt
+*.summary
+*.smsg
+*.done
+*.jdi
+*.pin
+*.sof
+*.pof
+PLLJ_PLLSPE_INFO.txt
+c5_pin_model_dump.txt
+
+# ModelSim
+work/
+transcript
+vsim.wlf
+*.vstf
+modelsim.ini
+
+# File di lavoro interni (non vanno nel repo pubblico)
+CLAUDE.md
+
+# ROM (copyright) e output MRA
+rom/*.zip
+rom/*.rom
+*.rom
